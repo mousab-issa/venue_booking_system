@@ -4,7 +4,8 @@ import validatorjs from "validator";
 import { useForm, useLocalStorage } from "../../../hooks";
 import { Portlet, Button, ImageCheckbox } from "../../../components";
 
-import formClasses from "components/Form/Form.module.scss";
+import formClasses from "../../../components/Form/Form.module.scss";
+
 
 type TypeRoomOptions = {
   id: string;
@@ -30,7 +31,7 @@ const step: TypeStep = {
   },
 };
 
-const RoomView: React.FC<TypeReservationStep> = (
+const VenueView: React.FC<TypeReservationStep> = (
   props: TypeReservationStep
 ) => {
   const [storedValue, setLocalStorageValue] = useLocalStorage(
@@ -176,4 +177,4 @@ const RoomView: React.FC<TypeReservationStep> = (
   );
 };
 
-export default RoomView;
+export default VenueView;

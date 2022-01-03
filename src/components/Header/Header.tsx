@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button } from "../index";
-import { clearStoredValues } from "../../lib/scripts/utils";
+import { clearStoredValues } from "../../lib/helpers/utils";
 
 import styleClasses from "./Header.module.scss";
 

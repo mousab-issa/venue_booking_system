@@ -1,6 +1,6 @@
 import React, { ChangeEvent, memo } from 'react';
 
-import { validator, logger, compareProps } from '../../../lib/scripts/utils';
+import { validator, logger, compareProps } from '../../../lib/helpers/utils';
 
 import inputClasses from './TextField.module.scss';
 import formClasses from '../Form.module.scss';

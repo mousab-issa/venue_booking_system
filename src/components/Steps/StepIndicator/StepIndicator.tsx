@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getStoredValue } from '../../../lib/scripts/utils';
+import { getStoredValue } from '../../../lib/helpers/utils';
 
 import styleClasses from './StepIndicator.module.scss';
 

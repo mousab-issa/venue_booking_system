@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import ReactSelect from 'react-select';
 import _ from 'lodash';
 
-import { validator, logger } from '../../../lib/scripts/utils';
+import { validator, logger } from '../../../lib/helpers/utils';
 
 import './Select.scss';
 import formClasses from '../Form.module.scss';

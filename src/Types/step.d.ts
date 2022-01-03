@@ -1,5 +1,5 @@
 declare global {
-    type TypeStep = {
+    interface TypeStep  {
         index: number;
         isValid: boolean;
         inputs: {

@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 
 
 const mapState = (state: TypeAppProps) => ({
-    data: state.hotels.data,
-    status: state.hotels.status,
-    error: state.hotels.error
+    // data: state.hotels.data,
+    // status: state.hotels.status,
+    // error: state.hotels.error
 });
 
 const mapDispatch = {

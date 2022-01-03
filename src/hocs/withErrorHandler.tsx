@@ -1,44 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 type TypeErrorHandlerProps = {};
 type TypeErrorHandlerState = {
-    error: boolean;
+  error: boolean;
 };
+
+// This Compoonent is used to handle errors to prevent app from crashing
 const withErrorHandler = (WrappedComponent: React.ComponentType) => {
-    return class extends Component<TypeErrorHandlerProps, TypeErrorHandlerState> {
-        constructor(props: {}) {
-            super(props);
-            this.state = {
-                error: false
-            };
-        }
+  return class extends Component<TypeErrorHandlerProps, TypeErrorHandlerState> {
+    constructor(props: {}) {
+      super(props);
+      this.state = {
+        error: false, 
+      };
+    }
 
-        static getDerivedStateFromError(error: Error) {
-            return { error: true };
-        }
+    static getDerivedStateFromError(error: Error) {
+      return { error: true };
+    }
 
-        componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-            // show a modal or something...
-            console.log(error);
-            
-            console.error('🔥 something went wrong.', error, errorInfo);
-        }
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+      // TODO: Add a modal
+      console.error("🔥 something went wrong.", error, errorInfo);
+    }
 
-        render() {
-            console.log(this.state);
-            
-            if (this.state.error) {
-                
-                return (
-                    <div className="error-handler">
-                        <h1>Something went wrong.</h1>
-                    </div>
-                );
-            }
+    render() {
+      if (this.state.error) {
+        return (
+          <div className="error-handler">
+            <h1>Something went wrong.</h1>
+          </div>
+        );
+      }
 
-            return <WrappedComponent {...this.props} />;
-        }
-    };
+      return <WrappedComponent {...this.props} />;
+    }
+  };
 };
 
 export default withErrorHandler;

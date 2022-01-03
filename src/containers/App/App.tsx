@@ -11,12 +11,13 @@ import {
 } from "../../components";
 // steps
 import { useSteps } from "../../hooks";
-import ReservDate from "./Steps/ReservDate";
+
+import ReservDate from "../Steps/ReservDate";
+import VenueView from "../Steps/VenueView";
 
 import iconCalendar from "../../lib/media/icons/calendar.svg";
 import Venue from "../../lib/media/icons/lecture-class-svgrepo-com.svg";
 import reviewReserv from "../../lib/media/icons/survey-svgrepo-com.svg";
-
 
 type TypeAppReduxProps = ConnectedProps<typeof connector>;
 
@@ -30,7 +31,7 @@ const App: React.FC<any> = (props) => {
       return <ReservDate stepChangeHandler={stepChangeHandler} />;
     }
     if (stepsState.currentStep === 1) {
-      return <h1>Step 2 </h1>;
+      return <VenueView  stepChangeHandler={stepChangeHandler} />;
     }
     if (stepsState.currentStep === 2) {
       return <h1>Step 3 </h1>;

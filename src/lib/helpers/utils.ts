@@ -80,6 +80,8 @@ class Logger {
         console.error(...newArgs);
     }
 }
+
+
 export const logger = new Logger();
 
 type TypeValidatorPayload = any;
@@ -125,32 +127,9 @@ export const isValidName = (str: string) => {
     return isValid;
 };
 
-export const getCreditCardYears = (): number[] => {
-    const targetYear = new Date().getFullYear() + 10;
-    const currentYear = new Date().getFullYear();
-    const yearsArr = [];
 
-    for (let i = currentYear; i <= targetYear; i += 1) {
-        yearsArr.push(i);
-    }
 
-    return yearsArr;
-};
 
-export const getCreditCardMonths = (year: string): string[] => {
-    let currentMonthIndex = 1;
-    const monthsArr = [];
-
-    if (year === new Date().getFullYear().toString()) {
-        currentMonthIndex = new Date().getMonth() + 1;
-    }
-
-    for (let i = currentMonthIndex; i <= 12; i += 1) {
-        monthsArr.push(i.toString().padStart(2, '0'));
-    }
-
-    return monthsArr;
-};
 
 export const getStoredValue = <T>(key: string): T | undefined => {
     try {
@@ -177,57 +156,6 @@ export const getTwoDatesDiff = (checkin: string | number, checkout: string | num
     return 0;
 };
 
-
-
-// export const getRoomDetails = (cart: TypeCartDetails['cart'], hotelsDetails: TypeHotelDetails[]) => {
-//     const activeHotelId = cart.hotelId;
-//     let activeHotelDetails;
-//     if (hotelsDetails && activeHotelId) {
-//         activeHotelDetails = hotelsDetails.find((item) => item.id === activeHotelId);
-//     }
-
-//     if (activeHotelDetails) {
-//         const roomTypeId = cart.roomType ? cart.roomType.split('-')[1] : '0';
-//         const roomTypeIndex = activeHotelDetails.room_type.findIndex(
-//             (type) => type.id.toString() === roomTypeId.toString()
-//         );
-
-//         const viewTypeId = cart.viewType ? cart.viewType.split('-')[1] : '0';
-//         const viewTypeIndex = activeHotelDetails.room_scenic.findIndex(
-//             (type) => type.id.toString() === viewTypeId.toString()
-//         );
-
-//         return {
-//             type: activeHotelDetails.room_type[roomTypeIndex],
-//             view: activeHotelDetails.room_scenic[viewTypeIndex]
-//         };
-//     }
-// };
-
-// export const getTotals = (cart: TypeCartDetails['cart'], hotelsDetails: TypeHotelDetails[]) => {
-//     const roomDetails = getRoomDetails(cart, hotelsDetails);
-
-//     let roomPrice = 0;
-//     let roomRatio = 0;
-//     let totalPrice = 0;
-//     if (roomDetails?.type && roomDetails?.view) {
-//         roomPrice = roomDetails.type.price;
-//         roomRatio = roomDetails.view.price_rate;
-//         if (cart.days && cart.adults) {
-//             totalPrice = getTotalPrice(roomPrice, +cart.days, +cart.adults);
-//         }
-//     }
-
-//     const finalPrice = (roomRatio / 100) * totalPrice + totalPrice;
-
-//     return {
-//         room: roomPrice,
-//         total: totalPrice,
-//         ratio: roomRatio,
-//         final: finalPrice
-//     };
-// };
-
 export const compareProps = <T>(a: object, b: T, keys: string[]): boolean =>
     _.isMatch(
         // check deep equality
@@ -249,8 +177,6 @@ export const handleCatchedError = (cb: Function) => (e: any) => {
         // properly handle e or...stop using libraries that throw naked booleans
     } else {
         // if we can't figure out what what we are dealing with then
-        // probably cannot recover...therefore, rethrow
-        // Note to Self: Rethink my life choices and choose better libraries to use.
         throw e;
     }
 };

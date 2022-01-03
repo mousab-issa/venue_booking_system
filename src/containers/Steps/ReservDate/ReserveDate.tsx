@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import validatorjs from "validator";
 
-import { useForm, useLocalStorage } from "../../../../hooks";
-import { Portlet, Button, Select, TextField } from "../../../../components";
+import { useLocalStorage, useForm } from "../../../hooks";
+import { Portlet, Button, TextField } from "../../../components";
 
-import formClasses from "../../../../components/Form/Form.module.scss";
+import formClasses from "../../../components/Form/Form.module.scss";
 
 let afterTwoDays: string | Date = new Date();
 afterTwoDays.setDate(afterTwoDays.getDate() + 1);
 afterTwoDays = afterTwoDays.toString();
 
+
 const step: TypeStep = {
   index: 0,
   isValid: false,
   inputs: {
-    hotel: {
-      value: "",
-      isTouched: false,
-      isValid: true,
-    },
     checkin: {
       value: "",
       isTouched: false,
@@ -52,11 +48,11 @@ const ReservDate: React.FC<TypeReservationStep> = (
     `step-${step.index}`,
     step
   );
+  
   const [formState, inputHandler] = useForm(
     storedValue.inputs,
     storedValue.isValid
   );
-  //   const { hotels } = useHotels();
 
   const [checkinValidators, setCheckinValidators] = useState<TypeValidator[]>([
     [validatorjs.isDate],
@@ -66,23 +62,19 @@ const ReservDate: React.FC<TypeReservationStep> = (
     [[validatorjs.isDate], [validatorjs.isAfter, afterTwoDays]]
   );
 
-  const activeHotelId = formState.inputs.hotel.value;
-  let selectedHotelDetails: TypeHotelDetails | undefined;
-  //   if (hotels) {
-  //     selectedHotelDetails = hotels.details.find(
-  //       (item: TypeHotelDetails) => item.id === activeHotelId
-  //     );
-  //   }
+  // const hotelsNames = useSelector((state: TypeAppProps) => state.kulliah.data.names);
+  // const hotelsDetails = useSelector((state: TypeAppProps) => state.hotels.data.details);
+
+ 
 
   let maxAdultSize = 5;
-  if (
-    selectedHotelDetails &&
-    typeof selectedHotelDetails.max_adult_size !== "undefined"
-  ) {
-    maxAdultSize = selectedHotelDetails.max_adult_size;
-  }
 
-
+  // if (
+  //   selectedHotelDetails &&
+  //   typeof selectedHotelDetails.max_adult_size !== "undefined"
+  // ) {
+  //   maxAdultSize = selectedHotelDetails.max_adult_size;
+  // }
 
   return (
     <Portlet>
@@ -161,7 +153,6 @@ const ReservDate: React.FC<TypeReservationStep> = (
             validationMessage={`Please enter a valid number between 1 and ${maxAdultSize}.`}
             onChange={inputHandler}
           />
-
         </div>
         <div
           className={[
